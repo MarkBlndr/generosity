@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact generosity to learn more about soulmates, mentr, or the organization." />
+  <title>Contact | generosity</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="contact">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">generosity</a>
+
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-sm btn-primary nav-cta">Start a conversation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero section section-soft">
+      <div class="container narrow reveal">
+        <p class="eyebrow">Contact</p>
+        <h1>Start with a conversation.</h1>
+        <p class="lead">
+          Whether you’re interested in <strong>soulmates</strong>, <strong>mentr</strong>, or the mission of generosity,
+          we’d be glad to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-card">
+            <h2>Get in touch</h2>
+            <p>
+              Use the form to introduce yourself and let us know what you’re looking for.
+              This starter version includes front-end validation and a success message.
+            </p>
+            <p>
+              To make the form fully live on Vercel, connect it to a service like Formspree, Basin,
+              or your own serverless function.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@generosity.org">hello@generosity.org</a></p>
+            <h3>Areas of interest</h3>
+            <ul class="feature-list compact">
+              <li>soulmates</li>
+              <li>mentr</li>
+              <li>General inquiry</li>
+              <li>Partnerships & support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-panel reveal delay-1">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+              <small class="error-message"></small>
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+              <small class="error-message"></small>
+            </div>
+
+            <div class="form-row">
+              <label for="interest">I’m interested in</label>
+              <select id="interest" name="interest" required>
+                <option value="">Please select</option>
+                <option value="soulmates">soulmates</option>
+                <option value="mentr">mentr</option>
+                <option value="general">General inquiry</option>
+                <option value="partnership">Partnerships & support</option>
+              </select>
+              <small class="error-message"></small>
+            </div>
+
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell us a bit about what you’re looking for..." required></textarea>
+              <small class="error-message"></small>
+            </div>
+
+            <button type="submit" class="btn btn-primary full-width">Send message</button>
+            <p id="formStatus" class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="index.html">generosity</a>
+        <p>Human connection, thoughtfully made.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Offerings</h4>
+        <ul>
+          <li><a href="contact.html?interest=soulmates">soulmates</a></li>
+          <li><a href="contact.html?interest=mentr">mentr</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
