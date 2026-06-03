@@ -79,26 +79,51 @@ if (contactForm) {
     return !message;
   };
 
-  contactForm.querySelectorAll('input, select, textarea').forEach(field => {
-    field.addEventListener('blur', () => validateField(field));
-    field.addEventListener('input', () => {
-      if (field.classList.contains('input-error')) validateField(field);
+  contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  statusEl.textContent = '';
+
+  const fields = [...contactForm.querySelectorAll('input, select, textarea')];
+  const allValid = fields.every(validateField);
+
+  if (!allValid) {
+    statusEl.textContent = 'Please review the highlighted fields.';
+    return;
+  }
+
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  submitButton.textContent = 'Sending...';
+
+  const formData = {
+    name: contactForm.name.value.trim(),
+    email: contactForm.email.value.trim(),
+    interest: contactForm.interest.value.trim(),
+    message: contactForm.message.value.trim()
+  };
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
     });
-  });
 
-  contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    statusEl.textContent = '';
+    const result = await response.json();
 
-    const fields = [...contactForm.querySelectorAll('input, select, textarea')];
-    const allValid = fields.every(validateField);
-
-    if (!allValid) {
-      statusEl.textContent = 'Please review the highlighted fields.';
-      return;
+    if (!response.ok) {
+      throw new Error(result.error || 'Something went wrong.');
     }
 
     contactForm.reset();
-    statusEl.textContent = 'Thanks — your message has been prepared successfully. Connect this form to Formspree or a Vercel backend to receive submissions live.';
-  });
+    statusEl.textContent = 'Thank you — your message has been sent.';
+  } catch (error) {
+    statusEl.textContent = error.message || 'Sorry, something went wrong. Please try again.';
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Send message';
+  }
+});
 }
